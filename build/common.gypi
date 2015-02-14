@@ -1,18 +1,16 @@
 {
     'variables': {
-        'variables': {
-            'clang%': 0
-        },
-        'conditions': [
-        ['clang == 1', {
-                'make_global_settings': [
-                ['CXX','/usr/bin/clang++'],
-                ['LINK','/usr/bin/clang++'],
-              ],
-        }, {}
-        ]
-      ],
+        'clang%': 0
   },
+  'conditions': [
+      ['clang == 1', {
+          'make_global_settings': [
+              ['CXX','/usr/bin/clang++'],
+          ['LINK','/usr/bin/clang++'],
+          ],
+      }, {}
+      ],
+  ],
   'target_defaults': {
       'default_configuration': 'Debug',
       'configurations': {
