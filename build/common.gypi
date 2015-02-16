@@ -1,12 +1,21 @@
 {
     'variables': {
-        'clang%': 0
+      'clang%': 0,
+      'conditions': [
+        ['OS == "linux"',
+            {
+                'shared_library_cflags': [
+                    '-fPIC',
+                ]
+            }
+        ]
+      ],
   },
   'conditions': [
       ['clang == 1', {
           'make_global_settings': [
               ['CXX','/usr/bin/clang++'],
-          ['LINK','/usr/bin/clang++'],
+              ['LINK','/usr/bin/clang++'],
           ],
       }, {}
       ],
@@ -23,12 +32,36 @@
                   'DEBUG=1',
                   'LOG_LEVEL=5',
               ],
-              'cflags': [
-                '-O0'
-              ]
+              'conditions': [
+                ['OS == "linux"',
+                  {
+                      'cflags': [
+                        '-O0'
+                      ],
+                  }
+                ],
+              ],
            },
            'Debug':  {
                'inherit_from': ['Common_Base', 'Debug_Base'],
+           },
+           'Release_Base': {
+              'abstract': 1,
+              'defines': [
+                  'NDEBUG',
+              ],
+              'conditions': [
+                ['OS == "linux"',
+                  {
+                      'cflags': [
+                        '-O2'
+                      ],
+                  }
+                ],
+              ],
+           },
+           'Release':  {
+               'inherit_from': ['Common_Base', 'Release_Base'],
            },
       },
   },

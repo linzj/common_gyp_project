@@ -24,6 +24,7 @@
             'sources': [ '<@(generated_src)' ],
             'dependencies' : [
                 'generate_src',
+                '../libhelloworld/libhelloworld.gyp:libhelloworld',
             ],
             'include_dirs' : [
                 '.',
