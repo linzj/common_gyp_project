@@ -8,7 +8,13 @@
                     '-fPIC',
                 ]
             }
-        ]
+        ],
+        ['OS == "win"',
+            {
+                'shared_library_cflags': [
+                ],
+            }
+        ],
       ],
   },
   'conditions': [
